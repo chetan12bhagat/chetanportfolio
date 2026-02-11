@@ -1,6 +1,6 @@
 import React from 'react';
 import spotlightImg from '../../images/spotlight.png';
-import fraudGuardImg from '../../images/fraudguard.png';
+import fraudGuardImg from '../../images/FraudGuard.png';
 
 export default function SpotlightProject() {
     return (
