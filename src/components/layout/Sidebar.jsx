@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import profileImg from '../../profile/profile.jpg';
+import profileImg from '../../images/profile.jpeg';
 import { playHapticClick } from '../../utils/haptics';
 
 const Sidebar = ({ activeSection, onNavigate }) => {
