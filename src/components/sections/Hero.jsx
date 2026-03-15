@@ -10,8 +10,6 @@ import {
     SiPostman
 } from 'react-icons/si'
 import { FaAws } from 'react-icons/fa'
-import profileImg from '../../images/profile.jpeg'
-
 const Hero = () => {
     const skills = [
         { name: 'React', icon: SiReact, color: '#61DAFB', url: 'https://react.dev' },
@@ -26,18 +24,7 @@ const Hero = () => {
 
     return (
         <section id="home" className="min-h-[70vh] flex items-center relative overflow-hidden mb-24">
-            <div className="max-w-4xl flex flex-col md:flex-row items-center gap-12">
-                {/* Profile Photo for Mobile (Visible on Mobile Only) */}
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="md:hidden w-32 h-32 rounded-3xl overflow-hidden border-4 border-white shadow-2xl skew-y-3"
-                >
-                    <img src={profileImg} alt="Chetan Bhagat" className="w-full h-full object-cover" />
-                </motion.div>
-
-                <div className="flex-1">
+            <div className="max-w-4xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -106,17 +93,6 @@ const Hero = () => {
                     >
                         <span>Follow my process and updates on <a href="https://github.com/chetan12bhagat" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">GitHub</a> and <a href="https://www.threads.net/@ch_etan012" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">Threads</a></span>
                     </motion.div>
-                </motion.div>
-            </div>
-
-                {/* Profile Photo for Desktop */}
-                <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="hidden md:block w-72 h-72 rounded-[40px] overflow-hidden border-8 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500"
-                >
-                    <img src={profileImg} alt="Chetan Bhagat" className="w-full h-full object-cover" />
                 </motion.div>
             </div>
         </section>
