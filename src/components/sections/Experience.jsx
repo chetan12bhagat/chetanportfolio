@@ -6,15 +6,16 @@ import {
     SiRedux, 
     SiPostman, 
     SiFigma, 
-    SiOpenai,
-    SiJavascript
+    SiOpenai
 } from 'react-icons/si';
+import tradexaLogo from '../../images/tradexa-logo.png';
 
 const Experience = () => {
     const experiences = [
         {
             title: "React Native Developer Intern (AI Focused)",
             company: "Tradexa Private Limited",
+            logo: tradexaLogo,
             period: "6 Months",
             location: "Remote / Nagpur",
             description: "Pioneered the integration of AI-driven features within React Native applications. Focused on enhancing user interaction through intelligent automated responses and data-driven insights.",
@@ -56,7 +57,7 @@ const Experience = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+                            className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
                         >
                             {/* Dot */}
                             <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-20">
@@ -74,7 +75,12 @@ const Experience = () => {
                                 </div>
                                 
                                 <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-4">
-                                    <div className="flex items-center gap-1.5">
+                                    <div className="flex items-center gap-2">
+                                        {exp.logo && (
+                                            <div className="w-6 h-6 rounded bg-white border border-slate-100 p-1 flex items-center justify-center overflow-hidden shrink-0 shadow-sm">
+                                                <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
+                                            </div>
+                                        )}
                                         <span className="font-bold text-slate-900">{exp.company}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5 opacity-60">

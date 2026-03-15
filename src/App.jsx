@@ -4,7 +4,6 @@ import Hero from './components/sections/Hero'
 import Experience from './components/sections/Experience'
 import Projects from './components/sections/Projects'
 import MobileProjects from './components/sections/MobileProjects'
-import DeviceShowcase from './components/sections/DeviceShowcase'
 import Achievements from './components/sections/Achievements'
 import CV from './components/sections/CV'
 import Contact from './components/sections/Contact'
@@ -24,25 +23,34 @@ function App() {
     restDelta: 0.001
   })
 
-  const activeSection = useSectionObserver(['projects', 'mobile-projects', 'achievements', 'cv', 'experience', 'contact'])
+  // Standardize section IDs to match those in Sidebar and MobileNav
+  const activeSection = useSectionObserver(['home', 'projects', 'mobile-projects', 'achievements', 'cv', 'experience', 'contact'])
   const scrollTo = useSmoothScroll()
 
   useEffect(() => {
-    // Lenis Smooth Scroll
-    const lenis = new Lenis()
-    window.lenis = lenis
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    // Lenis Smooth Scroll - use fallback if lenis fails
+    let lenis;
+    try {
+        lenis = new Lenis()
+        window.lenis = lenis
+        function raf(time) {
+          lenis.raf(time)
+          requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+    } catch (e) {
+        console.warn('Lenis failed to initialize', e);
     }
-    requestAnimationFrame(raf)
 
     const handleScroll = () => {
       setShowTopBtn(window.scrollY > 500)
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+        window.removeEventListener('scroll', handleScroll)
+        if (lenis) lenis.destroy();
+    }
   }, [])
 
   return (
@@ -62,14 +70,13 @@ function App() {
         <Hero />
         <Projects />
         <MobileProjects />
-        <DeviceShowcase />
         <Achievements />
         <CV />
         <Experience />
         <Contact />
       </div>
 
-      <footer className="py-12 border-t border-slate-100 text-center text-slate-500 text-sm font-mono">
+      <footer className="py-12 border-t border-slate-100 text-center text-slate-500 text-sm font-mono lg:ml-64">
         <p>Designed & Built by <span className="text-slate-900 font-bold">Chetan Bhagat</span></p>
         <div className="mt-4 flex justify-center gap-6">
           <p>© 2025 All Rights Reserved</p>

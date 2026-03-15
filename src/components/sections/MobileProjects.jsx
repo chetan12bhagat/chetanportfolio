@@ -22,7 +22,7 @@ import kisanVideo from '../../video/kisan-saathi.mp4';
 import movie1 from '../../images/movie app 1.jpeg';
 import movie2 from '../../images/movie app 2.jpeg';
 import movie3 from '../../images/movie app 3.jpeg';
-import movieVideo from '../../video/movie app.mp4';
+import movieVideo from '../../video/movie-app.mp4';
 
 // HIGH-FIDELITY IPHONE 16 PRO MOCKUP (PRO-SCALE)
 const Phone = ({ src, size = "default", className = "" }) => (
@@ -54,9 +54,15 @@ const PhoneVideo = ({ src, size = "default", className = "" }) => (
         
         <div className="absolute inset-[1.5px] bg-black rounded-[3.2rem] z-10 overflow-hidden ring-1 ring-white/5">
             <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-11 h-4 bg-black rounded-full z-40 flex items-center justify-end px-1.5 gap-0.5" />
-            <video autoPlay muted loop playsInline preload="auto" className="w-full h-full object-cover bg-black">
-                <source src={src} type="video/mp4" />
-            </video>
+            <video 
+                src={src}
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                preload="auto" 
+                className="w-full h-full object-cover bg-black"
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 pointer-events-none z-30" />
         </div>
     </div>

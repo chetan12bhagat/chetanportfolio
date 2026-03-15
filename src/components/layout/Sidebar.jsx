@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import profileImg from '../../profile/profile.jpeg';
+import profileImg from '../../profile/profile.jpg';
+import { playHapticClick } from '../../utils/haptics';
 
 const Sidebar = ({ activeSection, onNavigate }) => {
-    const audioContextRef = useRef(null);
-    const lastSectionRef = useRef(activeSection);
-
     const navGroups = [
         {
             title: null,
@@ -29,64 +27,11 @@ const Sidebar = ({ activeSection, onNavigate }) => {
                 { id: 'contact', label: 'Get in Touch' },
                 { id: 'github', label: 'GitHub', isExternal: true, url: 'https://github.com/chetan12bhagat' },
                 { id: 'linkedin', label: 'LinkedIn', isExternal: true, url: 'https://www.linkedin.com/in/chetansb22/' },
-                { id: 'threads', label: 'Threads', isExternal: true, url: 'https://www.threads.net/@ch_etan012' },
                 { id: 'instagram', label: 'Instagram', isExternal: true, url: 'https://www.instagram.com/ch_etan012/' },
                 { id: 'experience', label: 'Experience' },
             ]
         }
     ];
-
-    const playHapticClick = () => {
-        try {
-            if (!audioContextRef.current) {
-                audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            const ctx = audioContextRef.current;
-            if (ctx.state === 'suspended') ctx.resume();
-
-            // Primary click sound
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            // Higher frequency sweep for a "ping" click
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(800, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.05);
-
-            // Much higher gain for "loudness"
-            gain.gain.setValueAtTime(0.4, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.05);
-
-            // Subtle low-end thump for tactile feel
-            const osc2 = ctx.createOscillator();
-            const gain2 = ctx.createGain();
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(150, ctx.currentTime);
-            osc2.frequency.exponentialRampToValueAtTime(10, ctx.currentTime + 0.1);
-            gain2.gain.setValueAtTime(0.1, ctx.currentTime);
-            gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-            osc2.connect(gain2);
-            gain2.connect(ctx.destination);
-            osc2.start();
-            osc2.stop(ctx.currentTime + 0.1);
-
-        } catch (e) {
-            console.warn('Audio feedback failed', e);
-        }
-    };
-
-    useEffect(() => {
-        if (activeSection && activeSection !== lastSectionRef.current) {
-            playHapticClick();
-            lastSectionRef.current = activeSection;
-        }
-    }, [activeSection]);
 
     const handleNavClick = (id, isExternal, url) => {
         playHapticClick();

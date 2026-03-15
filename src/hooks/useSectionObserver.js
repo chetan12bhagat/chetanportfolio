@@ -18,7 +18,7 @@ export const useSectionObserver = (sectionIds, options = { threshold: 0.5 }) => 
         })
 
         return () => observer.disconnect()
-    }, [sectionIds, options])
+    }, [JSON.stringify(sectionIds), JSON.stringify(options)])
 
     return activeSection
 }
