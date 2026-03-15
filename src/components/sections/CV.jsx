@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaDownload, FaExpand } from 'react-icons/fa';
-import cvImage from '../../images/chetanresume.jpg';
+import cvImage from '../../images/chetanResume.jpg';
 
 const CV = () => {
     const [isZoomed, setIsZoomed] = useState(false);
