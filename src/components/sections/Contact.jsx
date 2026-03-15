@@ -7,8 +7,8 @@ const EMAIL = "chetansb2004@gmail.com";
 const Contact = () => {
     return (
         <section id="contact" className="max-w-6xl mx-auto my-24 px-4">
-            <h2 className="text-3xl font-semibold mb-6">
-                <span className="text-cyan-500">06.</span> Contact Us
+            <h2 className="text-3xl md:text-4xl font-bold mb-20 flex items-center gap-4 text-black">
+                <span className="text-black/40">06.</span> Contact Us
             </h2>
 
             <p className="text-slate-500 max-w-2xl mb-10">

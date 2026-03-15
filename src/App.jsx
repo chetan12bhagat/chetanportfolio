@@ -1,53 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Lenis from 'lenis'
-import FloatingRobot from './components/3d/FloatingRobot'
 import Hero from './components/sections/Hero'
-import About from './components/sections/About'
-import Skills from './components/sections/Skills'
+import Experience from './components/sections/Experience'
 import Projects from './components/sections/Projects'
 import MobileProjects from './components/sections/MobileProjects'
 import Achievements from './components/sections/Achievements'
+import CV from './components/sections/CV'
 import Contact from './components/sections/Contact'
-import { FaArrowUp } from 'react-icons/fa'
 import { motion, useScroll, useSpring } from 'framer-motion'
+import Sidebar from './components/layout/Sidebar'
 
-const Navbar = () => {
-  const [imageError, setImageError] = React.useState(false);
-
-  return (
-    <nav className="fixed top-0 left-0 w-full z-[1001] px-6 md:px-20 py-8 flex justify-between items-center backdrop-blur-sm bg-white/70 border-b border-slate-100">
-      {!imageError ? (
-        <img
-          src="/images/logo.png"
-          alt="Chetan Bhagat"
-          className="w-11 h-11 rounded-full object-cover cursor-pointer border-2 border-slate-800 hover:border-accent transition-all duration-300 hover:scale-105 shadow-md"
-          onClick={() => {
-            const el = document.getElementById('home');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          onError={() => setImageError(true)}
-        />
-      ) : (
-        <div
-          className="w-11 h-11 rounded-full bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center cursor-pointer border-2 border-slate-800 hover:border-accent transition-all duration-300 hover:scale-105 shadow-md"
-          onClick={() => {
-            const el = document.getElementById('home');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-        >
-          <span className="text-white font-bold text-sm">CB</span>
-        </div>
-      )}
-      <div className="flex gap-8 text-sm font-mono text-slate-500">
-        <a href="#about" className="hover:text-accent transition-colors hidden md:block">01. About</a>
-        <a href="#skills" className="hover:text-accent transition-colors hidden md:block">02. Skills</a>
-        <a href="#projects" className="hover:text-accent transition-colors hidden md:block">03. Projects</a>
-        <a href="#mobile-apps" className="hover:text-accent transition-colors hidden md:block">04. Apps</a>
-        <a href="#contact" className="hover:text-accent transition-colors">05. Contact</a>
-      </div>
-    </nav>
-  )
-}
+import { useSectionObserver } from './hooks/useSectionObserver'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 
 function App() {
   const [showTopBtn, setShowTopBtn] = useState(false)
@@ -57,6 +21,9 @@ function App() {
     damping: 30,
     restDelta: 0.001
   })
+
+  const activeSection = useSectionObserver(['projects', 'mobile-projects', 'achievements', 'cv', 'experience', 'contact'])
+  const scrollTo = useSmoothScroll()
 
   useEffect(() => {
     // Lenis Smooth Scroll
@@ -84,19 +51,17 @@ function App() {
         style={{ scaleX }}
       />
 
-      <Navbar />
+      <Sidebar activeSection={activeSection} onNavigate={scrollTo} />
 
-      {/* 3D Navigation Guide */}
-      <FloatingRobot />
 
       {/* Main Content */}
-      <div className="relative z-10">
+      <div className="lg:ml-64 relative z-10 px-6 md:px-20 py-24 lg:py-32">
         <Hero />
-        <About />
-        <Skills />
         <Projects />
         <MobileProjects />
         <Achievements />
+        <CV />
+        <Experience />
         <Contact />
       </div>
 
@@ -107,46 +72,6 @@ function App() {
         </div>
       </footer>
 
-      {/* Global Social Floating Icons - Visual Priority above Robot */}
-      <div className="fixed right-16 bottom-16 flex flex-col gap-4 z-[1002] hidden md:flex">
-        <a
-          href="https://www.instagram.com/ch_etan012/?utm_source=ig_web_button_share_sheet"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-xl bg-white shadow-md hover:shadow-lg transition animate-float flex items-center justify-center cursor-pointer pointer-events-auto"
-        >
-          <img
-            src="/icons/instagram.png"
-            alt="Instagram"
-            className="w-full h-full object-contain rounded-xl p-2"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/chetansb22/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-xl bg-white shadow-md hover:shadow-lg transition animate-float animate-float-delay flex items-center justify-center cursor-pointer pointer-events-auto"
-        >
-          <img
-            src="/icons/linkedin.png"
-            alt="LinkedIn"
-            className="w-full h-full object-contain rounded-xl p-2"
-          />
-        </a>
-        <a
-          href="https://github.com/chetan12bhagat"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-xl bg-white shadow-md hover:shadow-lg transition animate-float flex items-center justify-center cursor-pointer pointer-events-auto"
-        >
-          <img
-            src="/icons/github.png"
-            alt="GitHub"
-            className="w-full h-full object-contain rounded-xl p-2"
-          />
-        </a>
-      </div>
-
       {/* Back to top button */}
       <motion.button
         initial={{ opacity: 0 }}
@@ -154,7 +79,7 @@ function App() {
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="fixed bottom-10 right-10 z-[100] p-4 bg-slate-900 text-white rounded-full shadow-lg hover:bg-slate-800 transition-all hidden md:flex"
       >
-        <FaArrowUp />
+        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L256 161.5V464c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V161.5L53.9 289.1c-9.3 9.7-24.8 9.9-34.3.4z"></path></svg>
       </motion.button>
     </main>
   )

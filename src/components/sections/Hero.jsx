@@ -1,106 +1,100 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Typewriter } from 'react-simple-typewriter'
-import resumeImg from '../../images/chetanResume.jpg'
+import { 
+    SiReact, 
+    SiNodedotjs, 
+    SiMongodb, 
+    SiPostgresql, 
+    SiFirebase, 
+    SiAmazondynamodb,
+    SiPostman
+} from 'react-icons/si'
+import { FaAws } from 'react-icons/fa'
 
 const Hero = () => {
-    return (
-        <section id="home" className="min-h-screen flex items-center px-6 md:px-20 relative overflow-hidden bg-grid pt-28 lg:pt-32">
-            {/* Background Glow */}
-            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent/20 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -z-10" />
+    const skills = [
+        { name: 'React', icon: SiReact, color: '#61DAFB', url: 'https://react.dev' },
+        { name: 'React Native', icon: SiReact, color: '#61DAFB', url: 'https://reactnative.dev' },
+        { name: 'Node.js', icon: SiNodedotjs, color: '#339933', url: 'https://nodejs.org' },
+        { name: 'MongoDB', icon: SiMongodb, color: '#47A248', url: 'https://www.mongodb.com/docs/' },
+        { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1', url: 'https://www.postgresql.org/docs/' },
+        { name: 'REST APIs', icon: SiPostman, color: '#FF6C37', url: 'https://learning.postman.com/' },
+        { name: 'Firebase', icon: SiFirebase, color: '#FFCA28', url: 'https://firebase.google.com/docs' },
+        { name: 'DynamoDB/AWS', icon: SiAmazondynamodb, color: '#4053D6', url: 'https://docs.aws.amazon.com/dynamodb/' }
+    ];
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full pt-20 lg:pt-0">
-                {/* Left Side: Text Content */}
+    return (
+        <section id="home" className="min-h-[70vh] flex items-center relative overflow-hidden mb-24">
+            <div className="max-w-4xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-accent font-mono mb-4 text-lg">Hi, my name is</h2>
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient">
+                    <motion.h1 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="text-2xl font-medium mb-2 text-slate-900"
+                    >
                         Chetan Bhagat
-                    </h1>
-                    <div className="text-2xl md:text-4xl font-semibold mb-8 h-20">
-                        <span className="text-slate-600 text-shadow-sm">I'm a </span>
-                        <span className="text-accent underline decoration-accent/30 underline-offset-8">
-                            <Typewriter
-                                words={['Full-Stack Developer', 'React Native Developer', 'Mobile App Developer']}
-                                loop={0}
-                                cursor
-                                cursorStyle="_"
-                                typeSpeed={70}
-                                deleteSpeed={50}
-                                delaySpeed={1000}
-                            />
-                        </span>
-                    </div>
+                    </motion.h1>
+                    
+                    <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="flex flex-col mb-8"
+                    >
+                        <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">
+                            Full Stack Developer
+                        </h2>
+                        <h2 className="text-4xl md:text-6xl font-bold text-slate-400 tracking-tight">
+                            Cross-Platform App Developer
+                        </h2>
+                    </motion.div>
+                    
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl"
+                    >
+                        I build end-to-end digital products — from polished mobile apps to scalable web systems. 
+                        Whether it's a React frontend, a Node.js API, or a Flutter app, 
+                        I care about clean architecture and experiences that feel alive.
+                    </motion.p>
 
-                    <p className="text-slate-500 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-                        Crafting high-performance web and mobile experiences. B-Tech student with a passion for building scalable, user-centric applications that solve real-world problems.
-                    </p>
-                    {/* Resume Preview with Buttons */}
-                    <div className="flex items-start gap-6 mt-6">
-                        {/* Resume Image */}
-                        <motion.a
-                            href="https://drive.google.com/file/d/13U-1OlSbGmZraN9q4-xXESwourwUzMqR/view?usp=sharing"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="block w-40 flex-shrink-0"
-                        >
-                            <img
-                                src={resumeImg}
-                                alt="Chetan Bhagat Resume"
-                                className="w-full rounded-lg shadow-xl border-2 border-slate-200 hover:border-accent transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] cursor-pointer"
-                            />
-                            <p className="text-center text-xs text-slate-500 mt-2 font-mono">
-                                Click to view
-                            </p>
-                        </motion.a>
-
-                        {/* Action Buttons */}
-                        <div className="flex flex-col gap-3 pt-2">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.7 }}
+                        className="flex flex-wrap gap-3 mb-10"
+                    >
+                        {skills.map((skill, index) => (
                             <motion.a
-                                href="https://drive.google.com/uc?export=download&id=13U-1OlSbGmZraN9q4-xXESwourwUzMqR"
+                                key={skill.name}
+                                href={skill.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8, delay: 0.5 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-slate-800 transition-colors duration-300 shadow-lg hover:shadow-xl text-center whitespace-nowrap"
+                                whileHover={{ scale: 1.05, backgroundColor: '#f8fafc', borderColor: skill.color }}
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 transition-all hover:text-slate-900 shadow-sm hover:shadow-md"
                             >
-                                Download Resume
+                                <skill.icon style={{ color: skill.color }} size={16} />
+                                {skill.name}
                             </motion.a>
-                            <motion.button
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.8, delay: 0.6 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => {
-                                    const el = document.getElementById('projects');
-                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                                className="px-6 py-3 border-2 border-slate-300 text-slate-900 bg-slate-50 text-sm font-medium rounded-full hover:border-accent hover:bg-white transition-all duration-300 whitespace-nowrap"
-                            >
-                                View Projects
-                            </motion.button>
-                        </div>
-                    </div>
+                        ))}
+                    </motion.div>
+
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.9 }}
+                        className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-500"
+                    >
+                        <span>Follow my process and updates on <a href="https://github.com/chetan12bhagat" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">GitHub</a> and <a href="https://www.threads.net/@ch_etan012" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">Threads</a></span>
+                    </motion.div>
                 </motion.div>
-
-                {/* Right Side: Empty (Robot is global) */}
-                <div className="hidden lg:block"></div>
-            </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
-                <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
             </div>
         </section>
     )

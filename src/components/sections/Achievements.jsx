@@ -5,10 +5,10 @@ import dipexCertificate from '../../images/Dipex.jpg'
 
 const Achievements = () => {
     return (
-        <section className="py-24 px-6 md:px-20 bg-slate-50/50">
+        <section id="achievements" className="py-24 px-6 md:px-20 bg-slate-50/50">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl md:text-5xl font-bold mb-16 flex items-center gap-4 text-slate-900">
-                    <span className="text-accent">05.</span> Achievements
+                <h2 className="text-3xl md:text-4xl font-bold mb-16 flex items-center gap-4 text-black">
+                    <span className="text-black/40">03.</span> Achievements
                 </h2>
 
                 {/* DIPEX Certificate Section */}
