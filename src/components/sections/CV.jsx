@@ -50,7 +50,7 @@ const CV = () => {
                         
                         <div className="pt-4">
                             <a
-                                href="/chetanResumefinal (1).pdf"
+                                href="/Chetan_Bhagat_CV.pdf"
                                 download="Chetan_Bhagat_CV.pdf"
                                 className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0"
                             >
