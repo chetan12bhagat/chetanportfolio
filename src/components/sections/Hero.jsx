@@ -106,7 +106,8 @@ const Hero = () => {
                     >
                         <span>Follow my process and updates on <a href="https://github.com/chetan12bhagat" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">GitHub</a> and <a href="https://www.threads.net/@ch_etan012" target="_blank" rel="noopener noreferrer" className="text-slate-900 underline underline-offset-4 hover:text-slate-600 transition-colors font-medium">Threads</a></span>
                     </motion.div>
-                </div>
+                </motion.div>
+            </div>
 
                 {/* Profile Photo for Desktop */}
                 <motion.div 
