@@ -4,11 +4,13 @@ import Hero from './components/sections/Hero'
 import Experience from './components/sections/Experience'
 import Projects from './components/sections/Projects'
 import MobileProjects from './components/sections/MobileProjects'
+import DeviceShowcase from './components/sections/DeviceShowcase'
 import Achievements from './components/sections/Achievements'
 import CV from './components/sections/CV'
 import Contact from './components/sections/Contact'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Sidebar from './components/layout/Sidebar'
+import MobileNav from './components/layout/MobileNav'
 
 import { useSectionObserver } from './hooks/useSectionObserver'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
@@ -52,6 +54,7 @@ function App() {
       />
 
       <Sidebar activeSection={activeSection} onNavigate={scrollTo} />
+      <MobileNav activeSection={activeSection} onNavigate={scrollTo} />
 
 
       {/* Main Content */}
@@ -59,6 +62,7 @@ function App() {
         <Hero />
         <Projects />
         <MobileProjects />
+        <DeviceShowcase />
         <Achievements />
         <CV />
         <Experience />
