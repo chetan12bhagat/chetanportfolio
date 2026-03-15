@@ -1,6 +1,7 @@
+```javascript
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaDownload, FaExpand } from 'react-icons/fa';
+import { Download, Maximize2 } from 'lucide-react'; // Changed from react-icons/fa to lucide-react and removed unused icons
 import cvImage from '../../images/chetanresume.jpg';
 
 const CV = () => {
