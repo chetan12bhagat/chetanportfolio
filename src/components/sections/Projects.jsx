@@ -14,7 +14,7 @@ const Projects = () => {
             title: "Infinity AI", 
             description: "AI-powered creative dashboard & tools",
             video: infinityVideo,
-            url: "https://infinity-ai-xi.vercel.app/login",
+            url: "https://infinity-ai-v1.vercel.app/",
             type: "Web"
         },
         { 
